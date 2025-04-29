@@ -61,12 +61,8 @@ st.subheader("Upload, Capture or Live Detect Plant Images")
 
 input_method = st.radio("Select Image Source:", ["Upload Image", "Capture from Camera", "Live Detection"])
 uploaded_file = None
-
 if input_method == "Upload Image":
-    try:
-        uploaded_file = st.file_uploader("Choose an image...", type=['jpg', 'jpeg', 'png', 'webp'])
-    except st.StreamlitAPIException:
-        uploaded_file = st.file_uploader("Choose an image...", type=['jpg', 'jpeg', 'png'])
+    uploaded_file = st.file_uploader("Choose an image...", type=['jpg', 'jpeg', 'png'])
 
     if uploaded_file is not None:
         st.image(uploaded_file, caption='Selected Image', use_container_width=True)
