@@ -64,7 +64,7 @@ input_method = st.radio("Select Image Source:", ["Upload Image", "Capture from C
 uploaded_file = None
 
 if input_method == "Upload Image":
-    uploaded_file = st.file_uploader("Choose an image...", type=['jpg', 'jpeg', 'png'])
+    uploaded_file = st.file_uploader("Choose an image...", type=['jpg', 'jpeg', 'png', 'webp'])
     if uploaded_file is not None:
         st.image(uploaded_file, caption='Selected Image', use_container_width=True)
         st.write("Predicting...")
