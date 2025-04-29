@@ -8,7 +8,7 @@ from streamlit_webrtc import webrtc_streamer, VideoProcessorBase
 import av
 import cv2
 
-# Set page configuration first
+# Set page configuration
 st.set_page_config(page_title="Plant Species Identifier 🌿", page_icon="🌱", layout="centered")
 
 # Load model once
@@ -46,7 +46,7 @@ def preprocess_frame(frame):
     img_array = np.expand_dims(img_array, axis=0)
     return img_array
 
-# Frame-by-frame prediction
+# Prediction
 def predict_frame(frame):
     img_array = preprocess_frame(frame)
     predictions = model.predict(img_array)
@@ -55,16 +55,19 @@ def predict_frame(frame):
     predicted_class = class_names[top_pred_idx]
     return predicted_class, confidence
 
-# Streamlit UI elements
+# UI elements
 st.title("🌱 Plant Species Identifier")
 st.subheader("Upload, Capture or Live Detect Plant Images")
 
 input_method = st.radio("Select Image Source:", ["Upload Image", "Capture from Camera", "Live Detection"])
-
 uploaded_file = None
 
 if input_method == "Upload Image":
-    uploaded_file = st.file_uploader("Choose an image...", type=['jpg', 'jpeg', 'png', 'webp'])
+    try:
+        uploaded_file = st.file_uploader("Choose an image...", type=['jpg', 'jpeg', 'png', 'webp'])
+    except st.StreamlitAPIException:
+        uploaded_file = st.file_uploader("Choose an image...", type=['jpg', 'jpeg', 'png'])
+
     if uploaded_file is not None:
         st.image(uploaded_file, caption='Selected Image', use_container_width=True)
         st.write("Predicting...")
@@ -111,35 +114,27 @@ elif input_method == "Live Detection":
             self.predicted_label = predicted_class
             self.confidence = confidence
 
-            # Prepare text
             display_text = f"{predicted_class} ({confidence*100:.1f}%)"
-            
-            # Adjust font scale based on text length
-            if len(display_text) > 30:
-                font_scale = 0.5
-            else:
-                font_scale = 0.8
+            font_scale = 0.5 if len(display_text) > 30 else 0.8
 
-            # Split text into multiple lines if very long
-            max_width = 40  # max characters per line
+            max_width = 40
             lines = [display_text[i:i+max_width] for i in range(0, len(display_text), max_width)]
 
-            # Draw semi-transparent background for better visibility
             overlay = img.copy()
-            alpha = 0.4  # Transparency factor
+            alpha = 0.4
             y0, dy = 30, 30
+
             for i, line in enumerate(lines):
                 y = y0 + i * dy
                 text_size, _ = cv2.getTextSize(line, cv2.FONT_HERSHEY_SIMPLEX, font_scale, 2)
                 text_w, text_h = text_size
                 cv2.rectangle(overlay, (5, y - text_h - 5), (5 + text_w + 10, y + 5), (0, 0, 0), -1)
+
             img = cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0)
 
-            # Draw each line of text
             for i, line in enumerate(lines):
                 y = y0 + i * dy
-                cv2.putText(img, line, (10, y),
-                            cv2.FONT_HERSHEY_SIMPLEX, font_scale, (0, 255, 0), 2, cv2.LINE_AA)
+                cv2.putText(img, line, (10, y), cv2.FONT_HERSHEY_SIMPLEX, font_scale, (0, 255, 0), 2, cv2.LINE_AA)
 
             return av.VideoFrame.from_ndarray(img, format="bgr24")
 
@@ -147,4 +142,3 @@ elif input_method == "Live Detection":
 
 else:
     st.warning("👆 Please upload, capture, or start live detection to identify a plant.")
-
