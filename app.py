@@ -14,7 +14,7 @@ st.set_page_config(page_title="Plant Species Identifier 🌿", page_icon="🌱",
 # Load model once
 @st.cache_resource
 def load_model():
-    model = tf.keras.models.load_model('best_model_full.keras')
+    model = tf.keras.models.load_model('plant_identifier_model.keras')
     return model
 
 model = load_model()
