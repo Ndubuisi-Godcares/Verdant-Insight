@@ -78,3 +78,7 @@ pip install -r requirements.txt
 Run in command propmt
 ```
 streamlit run app.py
+```
+
+Note: 
+Uploaded images should be of PNG file types.
