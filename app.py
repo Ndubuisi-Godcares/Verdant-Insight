@@ -8,18 +8,21 @@ from streamlit_webrtc import webrtc_streamer, VideoProcessorBase
 import av
 import cv2
 
-# Set page configuration (must be the first Streamlit command)
+# Must come first
 st.set_page_config(page_title="Plant Species Identifier 🌿", page_icon="🌱", layout="centered")
 
-# Clear spacing and show "Guruji Air"
+# Force visibility of "Guruji Air" in all themes (light/dark)
 st.markdown(
     """
-    <div style='text-align: center; padding-top: 1rem; padding-bottom: 1rem;'>
-        <h2 style='color: lightgreen;'>Guruji Air</h2>
+    <div style='background-color: #222; padding: 1rem; text-align: center; border-radius: 10px;'>
+        <h1 style='color: #00FF7F; font-size: 2.5rem;'>Guruji Air</h1>
     </div>
     """,
     unsafe_allow_html=True
 )
+
+st.title("🌱 Plant Species Identifier")
+st.subheader("Upload, Capture or Live Detect Plant Images")
 
 # Load model once
 @st.cache_resource
