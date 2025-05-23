@@ -20,7 +20,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.title("🌱 Plant Species Identifier")
+st.title("🌱 Guruji Air | Plant Species Identifier")
 st.subheader("Upload, Capture or Live Detect Plant Images")
 
 # Load model once
