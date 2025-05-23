@@ -11,8 +11,6 @@ import cv2
 # Set page configuration
 # UI elements
 st.markdown("<h1 style='text-align: center; color: white;'>🌿 Guruji Air</h1>", unsafe_allow_html=True)
-st.title("🌱 Plant Species Identifier")
-st.subheader("Upload, Capture or Live Detect Plant Images")
 
 
 # Load model once
