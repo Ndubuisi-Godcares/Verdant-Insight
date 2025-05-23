@@ -8,15 +8,14 @@ from streamlit_webrtc import webrtc_streamer, VideoProcessorBase
 import av
 import cv2
 
-# Must come first
-st.set_page_config(page_title="Plant Species Identifier 🌿", page_icon="🌱", layout="centered")
+st.set_page_config(page_title="Guruji Air | Plant Identifier", page_icon="🌿", layout="centered")
 
-# Force visibility of "Guruji Air" in all themes (light/dark)
+# Combined Title with Guruji Air
 st.markdown(
     """
-    <div style='background-color: #222; padding: 1rem; text-align: center; border-radius: 10px;'>
-        <h1 style='color: #00FF7F; font-size: 2.5rem;'>Guruji Air</h1>
-    </div>
+    <h1 style='text-align: center; color: white; font-size: 3rem;'>
+        🌱 Guruji Air - Plant Species Identifier
+    </h1>
     """,
     unsafe_allow_html=True
 )
