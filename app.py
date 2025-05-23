@@ -11,8 +11,15 @@ import cv2
 # Set page configuration (must be the first Streamlit command)
 st.set_page_config(page_title="Plant Species Identifier 🌿", page_icon="🌱", layout="centered")
 
-# Add Guruji Air name at the top of the app
-st.markdown("<h1 style='text-align: center; color: green;'>Guruji Air</h1>", unsafe_allow_html=True)
+# Clear spacing and show "Guruji Air"
+st.markdown(
+    """
+    <div style='text-align: center; padding-top: 1rem; padding-bottom: 1rem;'>
+        <h2 style='color: lightgreen;'>Guruji Air</h2>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 # Load model once
 @st.cache_resource
