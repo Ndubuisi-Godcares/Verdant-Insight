@@ -9,7 +9,11 @@ import av
 import cv2
 
 # Set page configuration
-st.set_page_config(page_title="Plant Species Identifier 🌿", page_icon="🌱", layout="centered")
+# UI elements
+st.markdown("<h1 style='text-align: center; color: darkgreen;'>🌿 Guruji Air</h1>", unsafe_allow_html=True)
+st.title("🌱 Plant Species Identifier")
+st.subheader("Upload, Capture or Live Detect Plant Images")
+
 
 # Load model once
 @st.cache_resource
