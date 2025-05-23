@@ -8,20 +8,8 @@ from streamlit_webrtc import webrtc_streamer, VideoProcessorBase
 import av
 import cv2
 
-st.set_page_config(page_title="Guruji Air | Plant Identifier", page_icon="🌿", layout="centered")
-
-# Combined Title with Guruji Air
-st.markdown(
-    """
-    <h1 style='text-align: center; color: white; font-size: 3rem;'>
-        🌱 Guruji Air - Plant Species Identifier
-    </h1>
-    """,
-    unsafe_allow_html=True
-)
-
-st.title("🌱 Guruji Air | Plant Species Identifier")
-st.subheader("Upload, Capture or Live Detect Plant Images")
+# Set page configuration
+st.set_page_config(page_title="Plant Species Identifier 🌿", page_icon="🌱", layout="centered")
 
 # Load model once
 @st.cache_resource
