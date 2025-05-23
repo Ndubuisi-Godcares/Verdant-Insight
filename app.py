@@ -11,7 +11,8 @@ import cv2
 # Set page configuration
 # UI elements
 st.markdown("<h1 style='text-align: center; color: white;'>🌿 Guruji Air</h1>", unsafe_allow_html=True)
-
+st.title("🌱 Plant Species Identifier")
+st.subheader("Upload, Capture or Live Detect Plant Images")
 
 # Load model once
 @st.cache_resource
@@ -56,10 +57,6 @@ def predict_frame(frame):
     confidence = np.max(predictions)
     predicted_class = class_names[top_pred_idx]
     return predicted_class, confidence
-
-# UI elements
-st.title("🌱 Plant Species Identifier")
-st.subheader("Upload, Capture or Live Detect Plant Images")
 
 input_method = st.radio("Select Image Source:", ["Upload Image", "Capture from Camera", "Live Detection"])
 uploaded_file = None
