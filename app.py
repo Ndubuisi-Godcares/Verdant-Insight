@@ -8,12 +8,11 @@ from streamlit_webrtc import webrtc_streamer, VideoProcessorBase
 import av
 import cv2
 
-# Set page configuration
+# Set page configuration (must be the first Streamlit command)
 st.set_page_config(page_title="Plant Species Identifier 🌿", page_icon="🌱", layout="centered")
 
 # Add Guruji Air name at the top of the app
 st.markdown("<h1 style='text-align: center; color: green;'>Guruji Air</h1>", unsafe_allow_html=True)
-
 
 # Load model once
 @st.cache_resource
